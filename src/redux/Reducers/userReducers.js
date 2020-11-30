@@ -1,7 +1,6 @@
 import { CHANGE_USER, RESET_USER, REQUEST_LOGIN, RECEIVED_LOGIN } from '../Actions/userActions';
 
-const userReducer = (state = {name:'hello'}, action) => {
-  console.log(action)
+const userReducer = (state = {}, action) => {
   switch (action.type) {
     case CHANGE_USER:
       state[action.field] = action.value;

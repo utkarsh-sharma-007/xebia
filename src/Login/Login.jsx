@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {fetchLogin} from '../redux/Actions/userActions';
-
-const user = (state) => state.user;
+import { useHistory } from "react-router-dom";
 
 function Login() {
-  const loginUser = useSelector(user);
-  // console.log(loginUser)
+
+  const history = useHistory();
+
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -19,36 +19,45 @@ function Login() {
         let user = {
             name: name, password: password
         }
-        await dispatch(fetchLogin(user))
-        if(loginUser.name){
-            console.log('hello')
+        let logUser = await dispatch(fetchLogin(user))
+        console.log(logUser,'loginUser')
+        localStorage.setItem('user',JSON.stringify(logUser))
+        if(logUser.username){
+            history.push('/products')
         }
 
     }
   return (
-    <div className="container">
-        <form className="login-form" onSubmit={handleSubmit}>
-            <div>
-                <input
-                    type="text"
-                    placeholder="User Name"
-                    autoFocus={true}
-                    value={name}
-                    onChange={(e)=>handleChange(e,setName)}
-                />
-            </div>
-            <div>
-                <input
-                    type="password"
-                    placeholder="Password"
-                    autoFocus={true}
-                    value={password}
-                    onChange={(e)=>handleChange(e,setPassword)}
-                />
-            </div>
-            <button disabled={!name.length || !password.length}>Submit</button>
-        </form>
-    </div>
+      <>
+        <header>
+        <div className="header container">
+        <div className="logo">sCart</div>
+        </div>
+    </header>
+        <div className="container">
+            <form className="login-form" onSubmit={handleSubmit}>
+                <div>
+                    <input
+                        type="text"
+                        placeholder="User Name"
+                        autoFocus={true}
+                        value={name}
+                        onChange={(e)=>handleChange(e,setName)}
+                    />
+                </div>
+                <div>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        autoFocus={true}
+                        value={password}
+                        onChange={(e)=>handleChange(e,setPassword)}
+                    />
+                </div>
+                <button disabled={!name.length || !password.length}>Submit</button>
+            </form>
+        </div>
+       </>
   );
 }
 

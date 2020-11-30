@@ -7,6 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import Login from './Login/Login'
+import Products from './Products/Products'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,11 +16,14 @@ function App() {
   return (
     <>
       <div className="App">
-        <header>
-          <div className="header container">
-            <div className="logo">sCart</div>
+        <div id="custom-loader" className={'loader'} style={{display: "none"}}>
+          <div className={'lds-ring'}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
-        </header>
+        </div>
         <Router>
           <div>
             <Switch>
@@ -27,7 +31,7 @@ function App() {
                 <Login/>
               </Route>
               <Route path="/products">
-                <div>Products</div>
+                <Products/>
               </Route>
             </Switch>
           </div>

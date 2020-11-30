@@ -48,6 +48,10 @@
   height: auto;
 }
 
+.header.container.products {
+  display: flex;
+}
+
 .logo {
   font-size: 30px;
   text-align: left;
@@ -71,6 +75,11 @@ input {
   border: 1px solid #888;
 }
 
+.header.container.products input {
+  margin: 0px 20px;
+  width: 70%;
+}
+
 button {
   background-color: #1e39ed;
   color: white;
@@ -82,4 +91,66 @@ button {
 
 button:disabled {
   background-color: grey;
+}
+
+.loader {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 1500;
+  opacity: 0.4;
+}
+.lds-ring {
+  display: inline-block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.filter-heading,.filter-content,.filter-container {
+  border: 1px solid;
+  padding: 15px;
+}
+
+.filter-button {
+  float: right;
+  cursor: pointer;
+  color: #1e39ed
+}
+
+.filter-container {
+  margin: 10px 0px
 }
