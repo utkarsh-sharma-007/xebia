@@ -1,39 +1,46 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { recievedLogin } from '../redux/Actions/userActions';
 import { fetchProducts } from '../redux/Actions/productActions';
 // import { fetchProductsFilter } from '../redux/Actions/productFilterActions';
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import Headers from './Headers';
 import Filters from './Filters';
+import ProductCard from './ProductCard';
 
-let user = (state) => state.user
+function getUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
 
+// let user = (state) => state.user
+let product = (state) => state.product
 function Products() {
-    const history = useHistory();
+    const [uniqueBrands, setUniqueBrands] = useState([]);
+    // const history = useHistory();
     const dispatch = useDispatch();
-    React.useEffect(async ()=>{
+    const products = useSelector(product)
+    useEffect(async ()=>{
         await dispatch(fetchProducts())
-        // await dispatch(fetchProductsFilter())
     },[])
+    useEffect(()=>{
+        console.log(products);
+        let a = products.products.map(v=>v.brand).filter(getUnique)
+        setUniqueBrands(a);
+    },[products])
   return (
       <>
-        {/* <div className="header container products">
-            <div className="logo">sCart</div>
-            <input type="text"/>
-            <div style={{textAlign: "left"}}>
-                <div><i className="fa fa-user"/> Welcome {loggedInUser.fullName}</div>
-                <div><i className="fa fa-cart-arrow-down"/> 0 items</div>
-            </div>
-        </div> */}
         <Headers/>
         <hr/>
         <div className="body container">
             <div style={{display: "flex"}}>
                 <div style={{width: "25%", textAlign: "left"}}>
-                    <Filters/>
+                    <Filters brands={uniqueBrands}/>
                 </div>
-                <div>flex</div>
+                <div style={{width: "75%", textAlign: "left"}}>
+                    <div style={{display: "flex", flexWrap: "wrap", margin: "10px"}}>
+                        {products.products && products.products.map((v,i)=><ProductCard key={i} product={v}/>)}
+                    </div>
+                </div>
             </div>
         </div>
       </>

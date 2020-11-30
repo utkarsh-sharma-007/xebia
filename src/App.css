@@ -80,16 +80,13 @@ input {
   width: 70%;
 }
 
-button {
+.login-button {
   background-color: #1e39ed;
   color: white;
-  border-style: none;
-  padding: 10px 30px;
   font-size: 20px;
-  border-radius: 10px;
 }
 
-button:disabled {
+.login-button:disabled {
   background-color: grey;
 }
 
@@ -140,7 +137,7 @@ button:disabled {
   }
 }
 
-.filter-heading,.filter-content,.filter-container {
+.filter-heading,.filter-content,.filter-container,.product-inner-container {
   border: 1px solid;
   padding: 15px;
 }
@@ -153,4 +150,49 @@ button:disabled {
 
 .filter-container {
   margin: 10px 0px
+}
+
+.product-outer-container{
+  margin: 10px;
+  min-width: 250px;
+}
+
+.image-container{
+  max-width: 200px;
+  border-radius: 10px;
+  border: 1px solid #aaa;
+  margin: auto;
+  padding: 5px;
+  position: relative;
+}
+
+.discount {
+  background: red;
+  color: white;
+  padding: 5px; 
+  font-size: 8px;
+  border-radius: 10px;
+  position: absolute;
+  right: 10px;
+}
+
+.image-container img{
+  width: 100%;
+  max-height: 100px;
+}
+
+.product-info{
+  font-size: 14px;
+}
+
+.color-code {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+}
+
+button {
+  border-style: none;
+  padding: 10px 30px;
+  border-radius: 10px;
 }

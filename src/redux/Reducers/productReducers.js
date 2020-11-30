@@ -1,6 +1,6 @@
 import { REQUEST_PRODUCTS, RECEIVED_PRODUCTS } from '../Actions/productActions';
 
-const productsReducer = (state = {}, action) => {
+const productsReducer = (state = {products: []}, action) => {
 
   switch (action.type) {
     // case CHANGE_USER:
@@ -11,12 +11,13 @@ const productsReducer = (state = {}, action) => {
     //   return state;
     case REQUEST_PRODUCTS:
       state = {
+        products:[...state.products],
         loading: true
       };
       return state;
     case RECEIVED_PRODUCTS:
       state = {
-        ...action.products,
+        products:[...action.products],
         loading: false
       };
       return state;

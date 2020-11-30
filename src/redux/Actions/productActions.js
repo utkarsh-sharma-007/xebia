@@ -34,3 +34,20 @@ export function fetchProducts() {
       });
    };
   }
+
+export function searchProducts(search) {
+   return (dispatch) => {
+      dispatch(requestProducts())
+      loaderShow()
+     return axios.get(`https://xebiascart.herokuapp.com/products?title=${search}`)
+      .then((data) => {
+               dispatch(recievedProducts(data.data));
+               loaderHide()
+               return data.data
+          },
+      )
+      .catch((err)=>{
+          console.log(err);
+      });
+   };
+  }

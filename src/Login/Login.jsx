@@ -54,7 +54,7 @@ function Login() {
                         onChange={(e)=>handleChange(e,setPassword)}
                     />
                 </div>
-                <button disabled={!name.length || !password.length}>Submit</button>
+                <button classname="login-button" disabled={!name.length || !password.length}>Submit</button>
             </form>
         </div>
        </>
