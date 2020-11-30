@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {fetchLogin} from '../redux/Actions/userActions';
+import {fetchLogin, recievedLogin} from '../redux/Actions/userActions';
 import { useHistory } from "react-router-dom";
 
 function Login() {
@@ -12,6 +12,12 @@ function Login() {
   const dispatch = useDispatch();
 
   const handleChange = (e,f) => f(e.target.value);
+
+  React.useEffect(async ()=>{
+    let currentUser = JSON.parse(localStorage.getItem('user'));
+    if(currentUser && currentUser.username)
+        history.push('/products')
+},[])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
